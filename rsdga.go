@@ -10,7 +10,7 @@ import (
 type Generator struct {
 	year, month, day, seed, i int
 	tld                       string
-	lock                      *sync.Mutex
+	lock                      sync.Mutex
 }
 
 // New initializes a new Generator with the supplied year, month, day, and TLD
