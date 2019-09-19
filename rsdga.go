@@ -13,7 +13,7 @@ type Generator struct {
 	lock                      sync.Mutex
 }
 
-// New initializes a new Generator with the supplied year, month, day, and TLD
+// New initializes a new Generator and returns it
 func New(year, month, day int, tld string) *Generator {
 	return &Generator{
 		year:  year,
@@ -23,7 +23,7 @@ func New(year, month, day int, tld string) *Generator {
 	}
 }
 
-// NewSeeded initializes a new Generator with the supplied year, month, day, TLD, and seed
+// NewSeeded initializes a new Generator with a seed and returns it
 func NewSeeded(year, month, day, seed int, tld string) *Generator {
 	return &Generator{
 		year:  year,
@@ -34,12 +34,14 @@ func NewSeeded(year, month, day, seed int, tld string) *Generator {
 	}
 }
 
-// Next returns the generated domain and increments the iterator
+// Next returns the generated domain as a string and increments the iterator
 func (g *Generator) Next() string {
 	g.lock.Lock()
 	defer g.lock.Unlock()
 
 	g.i++
 
-	return fmt.Sprintf("%x.%s", md5.Sum([]byte(fmt.Sprintf("%v%v%v%v%v", g.year, g.month, g.day, g.i, g.seed))), g.tld)
+	return fmt.Sprintf("%x.%s", md5.Sum([]byte(
+		fmt.Sprintf("%v%v%v%v%v", g.year, g.month, g.day, g.i, g.seed),
+	)), g.tld)
 }
