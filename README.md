@@ -1,5 +1,5 @@
 # RSDGA
-**R**eally **S**imple **D**omain **G**eneration **A**lgorithm library
+**R**eally **S**imple **D**omain **G**eneration **A**lgorithm
 
 Short and to the point Go library for generating domain names based on supplied parameters. 
 
