@@ -8,9 +8,7 @@ Written for the _Hands-on Writing Malware in Go_ talk at BSidesDC 2019.
 For legal use only.
 
 ## Usage
-
 Pretty simple:
-
 ```go
 import (
 	"fmt"
@@ -31,3 +29,10 @@ func main() {
 	}
 }
 ```
+
+### Make a new Generator
+Without a seed:
+`generator := rsdga.New(2019, 01, 01, "com")`
+
+With a seed:
+`generator := rsdga.NewSeeded(2019, 01, 01, 1234, "com")`
