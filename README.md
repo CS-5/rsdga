@@ -2,7 +2,7 @@
 
 **R**eally **S**imple **D**omain **G**eneration **A**lgorithm
 
-Short and to the point Go library for generating domain names based on supplied parameters.
+Short and to the point Go library for generating domain names based on supplied parameters. A Domain Generation Algorithm is used to circumvent general domain blocklists by generating seemingly random domain names (In this case: using the current date along with an optional seed, hashed with MD5). A better description and overview can be found [here](https://blog.malwarebytes.com/security-world/2016/12/explained-domain-generating-algorithm/).
 
 Written for the _Hands-on Writing Malware in Go_ talk at BSidesDC 2019.
 
