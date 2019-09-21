@@ -1,7 +1,6 @@
 package rsdga_test
 
 import (
-	"crypto/md5"
 	"fmt"
 	"testing"
 	"time"
@@ -44,24 +43,17 @@ func ExampleGenerator_seeded() {
 }
 
 func TestGenerator(t *testing.T) {
-	time := time.Now()
-
 	/* Initialize Generator */
-	gen, err := rsdga.New(time.Year(), int(time.Month()), time.Day(), "com")
+	gen, err := rsdga.New(2000, 1, 1, ".com")
 	if err != nil {
 		t.Error(err.Error())
 	}
 
-	/* Iterate 5 Times */
-	for i := 1; i <= 6; i++ {
-		genDomain := gen.Next()
-		testDomain := fmt.Sprintf("%x.%s", md5.Sum([]byte(fmt.Sprintf(
-			"%v%v%v%v%v", time.Year(), int(time.Month()), time.Day(), i, 0),
-		)), "com")
+	/* Get a domain from the generator and compare */
+	test := gen.Next()
+	control := "0da796a9339d6d45170010aa06375d91.com"
 
-		if genDomain != testDomain {
-			t.Errorf("Domain incorrect, got: %q, want: %q", genDomain, testDomain)
-			break
-		}
+	if test != control {
+		t.Errorf("Domain incorrect, have: %q, want: %q", test, control)
 	}
 }
