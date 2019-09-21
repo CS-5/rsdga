@@ -24,7 +24,12 @@
 //		t := time.Now()
 //
 //		// Use the current time to supply the year, month, and day. Use ".com" as the TLD
-//		gen := rsdga.New(t.Year(), int(t.Month()), t.Day(), "com")
+//		gen, err := rsdga.New(t.Year(), int(t.Month()), t.Day(), "com")
+//
+//		if err != nil {
+//			fmt.Println(err)
+//			return
+//		}
 //
 //		// Print out 20 domains
 //		for i := 0; i <= 20; i++ {
