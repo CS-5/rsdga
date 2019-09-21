@@ -31,8 +31,8 @@ func main() {
 		return
 	}
 
-	// Print out 20 domains
-	for i := 0; i <= 20; i++ {
+	// Print out 5 domains
+	for i := 0; i <= 5; i++ {
 		fmt.Println(gen.Next())
 	}
 }
@@ -46,22 +46,6 @@ Output:
 6d06004feb188a4a463affbdbfff51d3.com
 e285c151730d8a5ec59369d609df3e07.com
 bec43b55c54522cfa12eaaef55c6f460.com
-9a803c0135c0ef9b49cfce8ed7719039.com
-e74dc2429f0094366fc5b2dcd47504f4.com
-7f24abd8c954f7b965c85634357541b2.com
-f7727c68543bc6b18c9720f01ba171aa.com
-828f8bb747c58dfdde95cabebb0ebfb7.com
-0804b15b01380b1da1785b24d18d7107.com
-a2a1fe991980d30f11c8315047b74086.com
-591bd58a478ec593b11a66274c783668.com
-5f1cf69be4aeef07fc3ee8fc811eb9b3.com
-8c4a87e79cd9d72bf999427c646dd550.com
-79d93c774adf631aebf3ca573a4558de.com
-d0a7c98f9afbe1cb0071b638c3f75fb9.com
-733d865d7175c8737206bbeee97cbed7.com
-4c77228996d2edbbe9092ce71f39e966.com
-f76d2edeec5dc3a87f930444164dd38c.com
-1ffd2643f72a6a57f65044442c59721f.com
 ```
 
 ### Make a new Generator
