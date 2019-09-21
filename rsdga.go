@@ -10,17 +10,12 @@ import (
 type Generator struct {
 	year, month, day, seed, i int
 	tld                       string
-	lock                      sync.Mutex
+	lock                      *sync.Mutex
 }
 
 // New initializes a new Generator and returns it
 func New(year, month, day int, tld string) *Generator {
-	return &Generator{
-		year:  year,
-		month: month,
-		day:   day,
-		tld:   tld,
-	}
+	return NewSeeded(year, month, day, 0, tld)
 }
 
 // NewSeeded initializes a new Generator with a seed and returns it
@@ -31,6 +26,7 @@ func NewSeeded(year, month, day, seed int, tld string) *Generator {
 		day:   day,
 		tld:   tld,
 		seed:  seed,
+		lock:  new(sync.Mutex),
 	}
 }
 
