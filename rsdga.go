@@ -52,8 +52,8 @@ package rsdga
 import (
 	"crypto/md5"
 	"fmt"
+	"strings"
 	"sync"
-	"unicode"
 )
 
 // Generator contains the parameters required to generate domains. Use New() or
@@ -65,8 +65,8 @@ type Generator struct {
 }
 
 // New initializes a new Generator and returns it.
-// Year, month, and day must all be in YYYY, MM, DD format (respectively) and
-// TLD must only contain letters (No numbers or punctuation).
+// Year, month, and day must all be in YYYY, MM, DD format (respectively).
+// Note: There is no input validation here.
 func New(year, month, day int, tld string) (*Generator, error) {
 	return NewSeeded(year, month, day, 0, tld)
 }
@@ -74,27 +74,8 @@ func New(year, month, day int, tld string) (*Generator, error) {
 // NewSeeded initializes a new Generator with a seed and returns it. See New()
 // for parameter descriptions.
 func NewSeeded(year, month, day, seed int, tld string) (*Generator, error) {
-	/* Make sure the TLD only contains letters */
-	for _, r := range tld {
-		if !unicode.IsLetter(r) {
-			return new(Generator),
-				fmt.Errorf("tld: %v contains invalid characters", tld)
-		}
-	}
-
-	if year > 10000 {
-		return new(Generator),
-			fmt.Errorf("year: %v greater than 4 digits", year)
-	}
-
-	if month > 12 {
-		return new(Generator),
-			fmt.Errorf("month: %v > 12 doesn't exist", month)
-	}
-
-	if day > 31 {
-		return new(Generator),
-			fmt.Errorf("day: %v > 31 doesn't exist", day)
+	if !strings.HasPrefix(tld, ".") {
+		tld = "." + tld
 	}
 
 	return &Generator{
@@ -115,7 +96,10 @@ func (g *Generator) Next() string {
 
 	g.i++
 
-	return fmt.Sprintf("%x.%s", md5.Sum([]byte(
+	fmt.Println(
+		fmt.Sprintf("%v%v%v%v%v", g.year, g.month, g.day, g.i, g.seed))
+
+	return fmt.Sprintf("%x%s", md5.Sum([]byte(
 		fmt.Sprintf("%v%v%v%v%v", g.year, g.month, g.day, g.i, g.seed),
 	)), g.tld)
 }
