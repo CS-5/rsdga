@@ -11,7 +11,7 @@ import (
 func ExampleGenerator() {
 	t := time.Now()
 
-	// Use the current time to supply the year, month, and day. Use ".com" as the TLD
+	/* Use the current time to supply the year, month, day, and seed. Use ".com" as the TLD */
 	gen, err := rsdga.New(t.Year(), int(t.Month()), t.Day(), "com")
 
 	if err != nil {
@@ -19,8 +19,8 @@ func ExampleGenerator() {
 		return
 	}
 
-	// Print out 20 domains
-	for i := 0; i <= 20; i++ {
+	/* Print out 5 domains */
+	for i := 0; i <= 5; i++ {
 		fmt.Println(gen.Next())
 	}
 }
@@ -28,7 +28,7 @@ func ExampleGenerator() {
 func ExampleGenerator_seeded() {
 	t := time.Now()
 
-	// Use the current time to supply the year, month, day, and seed. Use ".com" as the TLD
+	/* Use the current time to supply the year, month, day, and seed. Use ".com" as the TLD */
 	gen, err := rsdga.NewSeeded(t.Year(), int(t.Month()), t.Day(), 1234, "com")
 
 	if err != nil {
@@ -36,8 +36,8 @@ func ExampleGenerator_seeded() {
 		return
 	}
 
-	// Print out 20 domains
-	for i := 0; i <= 20; i++ {
+	/* Print out 5 domains */
+	for i := 0; i <= 5; i++ {
 		fmt.Println(gen.Next())
 	}
 }
