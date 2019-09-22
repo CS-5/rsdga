@@ -96,10 +96,7 @@ func (g *Generator) Next() string {
 
 	g.i++
 
-	fmt.Println(
-		fmt.Sprintf("%v%v%v%v%v", g.year, g.month, g.day, g.i, g.seed))
-
 	return fmt.Sprintf("%x%s", md5.Sum([]byte(
-		fmt.Sprintf("%v%v%v%v%v", g.year, g.month, g.day, g.i, g.seed),
+		fmt.Sprintf("%v%v%v%v%v", g.year, g.month, g.day, g.seed, g.i),
 	)), g.tld)
 }
