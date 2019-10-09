@@ -24,12 +24,7 @@ func main() {
 	t := time.Now()
 
 	/* Use the current time to supply the year, month, and day. Use ".com" as the TLD */
-	gen, err := rsdga.New(t.Year(), int(t.Month()), t.Day(), "com")
-
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	gen := rsdga.New(t.Year(), int(t.Month()), t.Day(), "com")
 
 	/* Print out 5 domains */
 	for i := 0; i <= 5; i++ {

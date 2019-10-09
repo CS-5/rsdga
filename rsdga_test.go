@@ -28,12 +28,7 @@ func ExampleGenerator() {
 	t := time.Now()
 
 	/* Use the current time to supply the year, month, day, and seed. Use ".com" as the TLD */
-	gen, err := rsdga.New(t.Year(), int(t.Month()), t.Day(), ".com")
-
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	gen := rsdga.New(t.Year(), int(t.Month()), t.Day(), ".com")
 
 	/* Print out 5 domains */
 	for i := 0; i <= 5; i++ {
@@ -45,12 +40,7 @@ func ExampleGenerator_seeded() {
 	t := time.Now()
 
 	/* Use the current time to supply the year, month, day, and 1234 as the seed. Use ".com" as the TLD */
-	gen, err := rsdga.NewSeeded(t.Year(), int(t.Month()), t.Day(), 1234, ".com")
-
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	gen := rsdga.NewSeeded(t.Year(), int(t.Month()), t.Day(), 1234, ".com")
 
 	/* Print out 5 domains */
 	for i := 0; i <= 5; i++ {
@@ -60,16 +50,13 @@ func ExampleGenerator_seeded() {
 
 func TestGenerator(t *testing.T) {
 	for _, test := range tests {
-		gen, err := rsdga.NewSeeded(
+		gen := rsdga.NewSeeded(
 			test.input[0],
 			test.input[1],
 			test.input[2],
 			test.input[3],
 			".test",
 		)
-		if err != nil {
-			t.Error(err.Error())
-		}
 
 		generated := gen.Next()
 		control := test.domain

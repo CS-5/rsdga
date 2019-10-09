@@ -24,12 +24,7 @@
 //		t := time.Now()
 //
 //		/* Use the current time to supply the year, month, day, and seed. Use ".com" as the TLD */
-//		gen, err := rsdga.New(t.Year(), int(t.Month()), t.Day(), "com")
-//
-//		if err != nil {
-//			fmt.Println(err)
-//			return
-//		}
+//		gen := rsdga.New(t.Year(), int(t.Month()), t.Day(), "com")
 //
 //		/* Print out 5 domains */
 //		for i := 0; i <= 5; i++ {
@@ -67,13 +62,13 @@ type Generator struct {
 // New initializes a new Generator and returns it.
 // Year, month, and day must all be in YYYY, MM, DD format (respectively).
 // Note: There is no input validation here.
-func New(year, month, day int, tld string) (*Generator, error) {
+func New(year, month, day int, tld string) *Generator {
 	return NewSeeded(year, month, day, 0, tld)
 }
 
 // NewSeeded initializes a new Generator with a seed and returns it. See New()
 // for parameter descriptions.
-func NewSeeded(year, month, day, seed int, tld string) (*Generator, error) {
+func NewSeeded(year, month, day, seed int, tld string) *Generator {
 	if !strings.HasPrefix(tld, ".") {
 		tld = "." + tld
 	}
@@ -85,7 +80,7 @@ func NewSeeded(year, month, day, seed int, tld string) (*Generator, error) {
 		tld:   tld,
 		seed:  seed,
 		lock:  new(sync.Mutex),
-	}, nil
+	}
 }
 
 // Next returns the generated domain as a string and increments the iterator
