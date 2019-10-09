@@ -8,7 +8,7 @@ Written for the _Hands-on Writing Malware in Go_ talk at BSidesDC 2019.
 
 For legal use only.
 
-## Usage
+## Usage - [Go Playground](https://play.golang.org/p/dwN2R3Rm_5d)
 
 Pretty simple (One might say _really_ simple):
 
