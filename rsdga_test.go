@@ -31,7 +31,7 @@ func ExampleGenerator() {
 	gen := rsdga.New(t.Year(), int(t.Month()), t.Day(), ".com")
 
 	/* Print out 5 domains */
-	for i := 0; i <= 5; i++ {
+	for i := 0; i < 5; i++ {
 		fmt.Println(gen.Next())
 	}
 }
@@ -43,7 +43,7 @@ func ExampleGenerator_seeded() {
 	gen := rsdga.NewSeeded(t.Year(), int(t.Month()), t.Day(), 1234, ".com")
 
 	/* Print out 5 domains */
-	for i := 0; i <= 5; i++ {
+	for i := 0; i < 5; i++ {
 		fmt.Println(gen.Next())
 	}
 }
